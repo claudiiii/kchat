@@ -1,0 +1,42 @@
+#+TITLE: KChat
+
+* Setup
+If you use [[https://nixos.org/][nix]]:
+#+begin_src shell
+$ nix-shell
+#+end_src
+or else:
+#+begin_src shell
+$ pip install -r requirements.txt
+#+end_src
+
+* Run
+You need at least two (2) peers running to use kchat.
+To start the first peer run:
+#+begin_src shell
+$ python kchat.py --name peer0
+#+end_src
+Note the printed port!
+All additional peers can be bootstrapped form this peer:
+#+begin_src shell
+$ python kchat.py --ip 0.0.0.0 --port {{the port form the first peer}} --name peer1
+#+end_src
+
+* Usage
+Input can be typed all the time and is submitted with return, output will be printed to stdout.
+
+Help:
+#+begin_src
+Usage: kchat.py [OPTIONS]
+
+Options:
+  -i, --ip TEXT         Ip address of the bootstrap node.
+  -p, --port INTEGER    Port of the bootstrap node.
+  -n, --name TEXT       Name of the node.
+  --debug / --no-debug  Enable debug logging.
+  --help                Show this message and exit.
+#+end_src
+
+* Dependencies
++ kademlia
++ click
